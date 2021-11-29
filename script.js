@@ -1,4 +1,6 @@
 
+// array med spelare och deras poäng
+
 let allPlayers = [
 
     {
@@ -26,6 +28,8 @@ let addPlayer = document.getElementById("addPlayer");
 
 let addPlayerBtn = document.getElementById("addPlayerBtn");
 
+//funktion som först tömmer sidan och därefter lägger till en lista med spelare på sidan med 2 knappar var
+
 function apendPlayers (){
 
     minContainer.innerHTML = "";
@@ -35,17 +39,23 @@ function apendPlayers (){
         minContainer.insertAdjacentHTML("beforeend","<li>"+allPlayers[i].name+"</li>");
         minContainer.insertAdjacentHTML("beforeend", "<li>poäng: "+allPlayers[i].points+"</li>");
 
-        let plus = [i] + "+";
-        let minus = [i] + "-";
-        console.log(plus);
-        console.log(minus);
+        //let plus = [i] + "+";
+        //let minus = [i] + "-";
 
-        minContainer.insertAdjacentHTML("beforeend","<button id="+minus+"> - </button>");
-        minContainer.insertAdjacentHTML("beforeend","<button id="+plus+"> + </button>");
+        let plus = [i];
+        let minus = [i];
+        //console.log(plus);
+        //console.log(minus);
+
+        minContainer.insertAdjacentHTML("beforeend","<button id="+minus+" value='minus'> - </button>");
+        minContainer.insertAdjacentHTML("beforeend","<button id="+plus+" value='plus'> + </button>");
+
     };
 
 };
 
+
+//låter användaren lägga till en ny spelare i listan
 
 addPlayerBtn.addEventListener("click", function(){
 
@@ -55,10 +65,38 @@ addPlayerBtn.addEventListener("click", function(){
     }
     allPlayers.push(nySpelare);
 
-    console.log(allPlayers);
+    //console.log(allPlayers);
 
     apendPlayers();
 });
 
+
+minContainer.addEventListener("click", function(event){
+    
+    let target = event.target
+
+    let targetValue = target.value;
+
+    let targetId = target.id;
+
+    console.log(target);
+
+    console.log(targetValue);
+
+    console.log(targetId);
+
+    if (targetValue == "plus") {
+        
+
+
+        console.log("du tryckte på plus");
+    };
+
+    if (targetValue == "minus") {
+        console.log("du tryckte på minus");
+    }
+
+
+});
 
 apendPlayers ();
