@@ -39,16 +39,8 @@ function apendPlayers (){
         minContainer.insertAdjacentHTML("beforeend","<li>"+allPlayers[i].name+"</li>");
         minContainer.insertAdjacentHTML("beforeend", "<li>poäng: "+allPlayers[i].points+"</li>");
 
-        //let plus = [i] + "+";
-        //let minus = [i] + "-";
-
-        let plus = [i];
-        let minus = [i];
-        //console.log(plus);
-        //console.log(minus);
-
-        minContainer.insertAdjacentHTML("beforeend","<button id="+minus+" value='minus'> - </button>");
-        minContainer.insertAdjacentHTML("beforeend","<button id="+plus+" value='plus'> + </button>");
+        minContainer.insertAdjacentHTML("beforeend","<button id="+[i]+" class='minus'> - </button>");
+        minContainer.insertAdjacentHTML("beforeend","<button id="+[i]+" class='plus'> + </button>");
 
     };
 
@@ -65,37 +57,26 @@ addPlayerBtn.addEventListener("click", function(){
     }
     allPlayers.push(nySpelare);
 
-    //console.log(allPlayers);
-
     apendPlayers();
 });
 
 
 minContainer.addEventListener("click", function(event){
     
-    let target = event.target
+    let target = event.target.className;
+    let gubbe = allPlayers[event.target.id];
 
-    let targetValue = target.value;
+    if (target === "plus") {
 
-    let targetId = target.id;
+        gubbe.points++
 
-    console.log(target);
+    } else if (target === "minus") {
 
-    console.log(targetValue);
-
-    console.log(targetId);
-
-    if (targetValue == "plus") {
+        gubbe.points--
         
-
-
-        console.log("du tryckte på plus");
     };
 
-    if (targetValue == "minus") {
-        console.log("du tryckte på minus");
-    }
-
+    apendPlayers ();
 
 });
 
